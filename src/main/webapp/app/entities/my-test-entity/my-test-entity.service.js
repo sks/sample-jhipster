@@ -4,9 +4,9 @@
         .module('jhipsterApp')
         .factory('MyTestEntity', MyTestEntity);
 
-    MyTestEntity.$inject = ['$resource', 'DateUtils'];
+    MyTestEntity.$inject = ['$resource'];
 
-    function MyTestEntity ($resource, DateUtils) {
+    function MyTestEntity ($resource) {
         var resourceUrl =  'api/my-test-entities/:id';
 
         return $resource(resourceUrl, {}, {
@@ -16,8 +16,6 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
-                        data.createdOn = DateUtils.convertDateTimeFromServer(data.createdOn);
-                        data.modifedOn = DateUtils.convertDateTimeFromServer(data.modifedOn);
                     }
                     return data;
                 }

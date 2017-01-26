@@ -67,7 +67,7 @@ class MyTestEntityGatlingTest extends Simulation {
             .exec(http("Create new myTestEntity")
             .post("/api/my-test-entities")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "firstName":"SAMPLE_TEXT", "lastName":"SAMPLE_TEXT", "age":"0", "email":"SAMPLE_TEXT", "company":"SAMPLE_TEXT", "country":"SAMPLE_TEXT", "tag":"SAMPLE_TEXT", "createdOn":"2020-01-01T00:00:00.000Z", "modifedOn":"2020-01-01T00:00:00.000Z"}""")).asJSON
+            .body(StringBody("""{"id":null, "firstName":"SAMPLE_TEXT", "lastName":"SAMPLE_TEXT", "age":"0", "email":"SAMPLE_TEXT", "company":"SAMPLE_TEXT", "country":"SAMPLE_TEXT", "tag":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_myTestEntity_url"))).exitHereIfFailed
             .pause(10)

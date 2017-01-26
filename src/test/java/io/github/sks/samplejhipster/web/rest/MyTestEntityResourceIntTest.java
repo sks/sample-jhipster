@@ -21,13 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
-import java.time.ZoneId;
 import java.util.List;
 
-import static io.github.sks.samplejhipster.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -62,12 +57,6 @@ public class MyTestEntityResourceIntTest {
 
     private static final String DEFAULT_TAG = "AAAAAAAAAA";
     private static final String UPDATED_TAG = "BBBBBBBBBB";
-
-    private static final ZonedDateTime DEFAULT_CREATED_ON = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_CREATED_ON = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
-    private static final ZonedDateTime DEFAULT_MODIFED_ON = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_MODIFED_ON = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     @Inject
     private MyTestEntityRepository myTestEntityRepository;
@@ -110,8 +99,6 @@ public class MyTestEntityResourceIntTest {
         myTestEntity.setCompany(DEFAULT_COMPANY);
         myTestEntity.setCountry(DEFAULT_COUNTRY);
         myTestEntity.setTag(DEFAULT_TAG);
-        myTestEntity.setCreatedOn(DEFAULT_CREATED_ON);
-        myTestEntity.setModifedOn(DEFAULT_MODIFED_ON);
         return myTestEntity;
     }
 
@@ -143,8 +130,6 @@ public class MyTestEntityResourceIntTest {
         assertThat(testMyTestEntity.getCompany()).isEqualTo(DEFAULT_COMPANY);
         assertThat(testMyTestEntity.getCountry()).isEqualTo(DEFAULT_COUNTRY);
         assertThat(testMyTestEntity.getTag()).isEqualTo(DEFAULT_TAG);
-        assertThat(testMyTestEntity.getCreatedOn()).isEqualTo(DEFAULT_CREATED_ON);
-        assertThat(testMyTestEntity.getModifedOn()).isEqualTo(DEFAULT_MODIFED_ON);
     }
 
     @Test
@@ -277,42 +262,6 @@ public class MyTestEntityResourceIntTest {
 
     @Test
     @Transactional
-    public void checkCreatedOnIsRequired() throws Exception {
-        int databaseSizeBeforeTest = myTestEntityRepository.findAll().size();
-        // set the field null
-        myTestEntity.setCreatedOn(null);
-
-        // Create the MyTestEntity, which fails.
-
-        restMyTestEntityMockMvc.perform(post("/api/my-test-entities")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(myTestEntity)))
-            .andExpect(status().isBadRequest());
-
-        List<MyTestEntity> myTestEntityList = myTestEntityRepository.findAll();
-        assertThat(myTestEntityList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkModifedOnIsRequired() throws Exception {
-        int databaseSizeBeforeTest = myTestEntityRepository.findAll().size();
-        // set the field null
-        myTestEntity.setModifedOn(null);
-
-        // Create the MyTestEntity, which fails.
-
-        restMyTestEntityMockMvc.perform(post("/api/my-test-entities")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(myTestEntity)))
-            .andExpect(status().isBadRequest());
-
-        List<MyTestEntity> myTestEntityList = myTestEntityRepository.findAll();
-        assertThat(myTestEntityList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllMyTestEntities() throws Exception {
         // Initialize the database
         myTestEntityRepository.saveAndFlush(myTestEntity);
@@ -328,9 +277,7 @@ public class MyTestEntityResourceIntTest {
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].company").value(hasItem(DEFAULT_COMPANY.toString())))
             .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())))
-            .andExpect(jsonPath("$.[*].tag").value(hasItem(DEFAULT_TAG.toString())))
-            .andExpect(jsonPath("$.[*].createdOn").value(hasItem(sameInstant(DEFAULT_CREATED_ON))))
-            .andExpect(jsonPath("$.[*].modifedOn").value(hasItem(sameInstant(DEFAULT_MODIFED_ON))));
+            .andExpect(jsonPath("$.[*].tag").value(hasItem(DEFAULT_TAG.toString())));
     }
 
     @Test
@@ -350,9 +297,7 @@ public class MyTestEntityResourceIntTest {
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.company").value(DEFAULT_COMPANY.toString()))
             .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()))
-            .andExpect(jsonPath("$.tag").value(DEFAULT_TAG.toString()))
-            .andExpect(jsonPath("$.createdOn").value(sameInstant(DEFAULT_CREATED_ON)))
-            .andExpect(jsonPath("$.modifedOn").value(sameInstant(DEFAULT_MODIFED_ON)));
+            .andExpect(jsonPath("$.tag").value(DEFAULT_TAG.toString()));
     }
 
     @Test
@@ -379,8 +324,6 @@ public class MyTestEntityResourceIntTest {
         updatedMyTestEntity.setCompany(UPDATED_COMPANY);
         updatedMyTestEntity.setCountry(UPDATED_COUNTRY);
         updatedMyTestEntity.setTag(UPDATED_TAG);
-        updatedMyTestEntity.setCreatedOn(UPDATED_CREATED_ON);
-        updatedMyTestEntity.setModifedOn(UPDATED_MODIFED_ON);
 
         restMyTestEntityMockMvc.perform(put("/api/my-test-entities")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -398,8 +341,6 @@ public class MyTestEntityResourceIntTest {
         assertThat(testMyTestEntity.getCompany()).isEqualTo(UPDATED_COMPANY);
         assertThat(testMyTestEntity.getCountry()).isEqualTo(UPDATED_COUNTRY);
         assertThat(testMyTestEntity.getTag()).isEqualTo(UPDATED_TAG);
-        assertThat(testMyTestEntity.getCreatedOn()).isEqualTo(UPDATED_CREATED_ON);
-        assertThat(testMyTestEntity.getModifedOn()).isEqualTo(UPDATED_MODIFED_ON);
     }
 
     @Test

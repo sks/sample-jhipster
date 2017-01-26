@@ -1,13 +1,22 @@
 package io.github.sks.samplejhipster.domain;
 
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
-import java.util.Objects;
 
 /**
  * A MyTestEntity.
@@ -55,14 +64,6 @@ public class MyTestEntity implements Serializable {
 
     @Column(name = "tag")
     private String tag;
-
-    @NotNull
-    @Column(name = "created_on", nullable = false)
-    private ZonedDateTime createdOn;
-
-    @NotNull
-    @Column(name = "modifed_on", nullable = false)
-    private ZonedDateTime modifedOn;
 
     public Long getId() {
         return id;
@@ -126,22 +127,6 @@ public class MyTestEntity implements Serializable {
 
     public void setTag(String tag) {
         this.tag = tag;
-    }
-
-    public ZonedDateTime getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(ZonedDateTime createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public ZonedDateTime getModifedOn() {
-        return modifedOn;
-    }
-
-    public void setModifedOn(ZonedDateTime modifedOn) {
-        this.modifedOn = modifedOn;
     }
 
     @Override

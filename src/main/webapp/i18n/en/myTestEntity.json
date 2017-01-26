@@ -22,9 +22,7 @@
             "email": "Email",
             "company": "Company",
             "country": "Country",
-            "tag": "Tag",
-            "createdOn": "Created On",
-            "modifedOn": "Modifed On"
+            "tag": "Tag"
         }
     }
 }

@@ -63,20 +63,6 @@
         {
             "fieldName": "tag",
             "fieldType": "String"
-        },
-        {
-            "fieldName": "createdOn",
-            "fieldType": "ZonedDateTime",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "modifedOn",
-            "fieldType": "ZonedDateTime",
-            "fieldValidateRules": [
-                "required"
-            ]
         }
     ],
     "changelogDate": "20170126011951",

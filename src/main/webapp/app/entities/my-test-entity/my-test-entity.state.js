@@ -111,8 +111,6 @@
                                 company: null,
                                 country: null,
                                 tag: null,
-                                createdOn: null,
-                                modifedOn: null,
                                 id: null
                             };
                         }
