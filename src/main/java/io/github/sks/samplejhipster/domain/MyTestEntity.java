@@ -16,15 +16,13 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import java.io.Serializable;
-
 /**
  * A MyTestEntity.
  */
 @Entity
 @Table(name = "my_test_entity")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class MyTestEntity implements Serializable {
+public class MyTestEntity extends AbstractAuditingEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -160,8 +158,6 @@ public class MyTestEntity implements Serializable {
             ", company='" + company + "'" +
             ", country='" + country + "'" +
             ", tag='" + tag + "'" +
-            ", createdOn='" + createdOn + "'" +
-            ", modifedOn='" + modifedOn + "'" +
             '}';
     }
 }
