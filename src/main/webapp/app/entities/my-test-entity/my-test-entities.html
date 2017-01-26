@@ -1,0 +1,72 @@
+<div>
+    <h2 data-translate="jhipsterApp.myTestEntity.home.title">My Test Entities</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="my-test-entity.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="jhipsterApp.myTestEntity.home.createLabel">
+                        Create new My Test Entity
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="firstName"><span data-translate="jhipsterApp.myTestEntity.firstName">First Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastName"><span data-translate="jhipsterApp.myTestEntity.lastName">Last Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="age"><span data-translate="jhipsterApp.myTestEntity.age">Age</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="email"><span data-translate="jhipsterApp.myTestEntity.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="company"><span data-translate="jhipsterApp.myTestEntity.company">Company</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="country"><span data-translate="jhipsterApp.myTestEntity.country">Country</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tag"><span data-translate="jhipsterApp.myTestEntity.tag">Tag</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="createdOn"><span data-translate="jhipsterApp.myTestEntity.createdOn">Created On</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="modifedOn"><span data-translate="jhipsterApp.myTestEntity.modifedOn">Modifed On</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="myTestEntity in vm.myTestEntities track by myTestEntity.id">
+                    <td><a ui-sref="my-test-entity-detail({id:myTestEntity.id})">{{myTestEntity.id}}</a></td>
+                    <td>{{myTestEntity.firstName}}</td>
+                    <td>{{myTestEntity.lastName}}</td>
+                    <td>{{myTestEntity.age}}</td>
+                    <td>{{myTestEntity.email}}</td>
+                    <td>{{myTestEntity.company}}</td>
+                    <td>{{myTestEntity.country}}</td>
+                    <td>{{myTestEntity.tag}}</td>
+                    <td>{{myTestEntity.createdOn | date:'medium'}}</td>
+                    <td>{{myTestEntity.modifedOn | date:'medium'}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="my-test-entity-detail({id:myTestEntity.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="my-test-entity.edit({id:myTestEntity.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="my-test-entity.delete({id:myTestEntity.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

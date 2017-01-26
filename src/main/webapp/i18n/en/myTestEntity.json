@@ -1,0 +1,30 @@
+{
+    "jhipsterApp": {
+        "myTestEntity" : {
+            "home": {
+                "title": "My Test Entities",
+                "createLabel": "Create a new My Test Entity",
+                "createOrEditLabel": "Create or edit a My Test Entity",
+                "search": "Search for My Test Entity"
+            },
+            "created": "A new My Test Entity is created with identifier {{ param }}",
+            "updated": "A My Test Entity is updated with identifier {{ param }}",
+            "deleted": "A My Test Entity is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete My Test Entity {{ id }}?"
+            },
+            "detail": {
+                "title": "My Test Entity"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "age": "Age",
+            "email": "Email",
+            "company": "Company",
+            "country": "Country",
+            "tag": "Tag",
+            "createdOn": "Created On",
+            "modifedOn": "Modifed On"
+        }
+    }
+}

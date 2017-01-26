@@ -1,0 +1,55 @@
+
+<div>
+    <h2><span data-translate="jhipsterApp.myTestEntity.detail.title">My Test Entity</span> {{vm.myTestEntity.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="jhipsterApp.myTestEntity.firstName">First Name</span></dt>
+        <dd>
+            <span>{{vm.myTestEntity.firstName}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterApp.myTestEntity.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{vm.myTestEntity.lastName}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterApp.myTestEntity.age">Age</span></dt>
+        <dd>
+            <span>{{vm.myTestEntity.age}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterApp.myTestEntity.email">Email</span></dt>
+        <dd>
+            <span>{{vm.myTestEntity.email}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterApp.myTestEntity.company">Company</span></dt>
+        <dd>
+            <span>{{vm.myTestEntity.company}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterApp.myTestEntity.country">Country</span></dt>
+        <dd>
+            <span>{{vm.myTestEntity.country}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterApp.myTestEntity.tag">Tag</span></dt>
+        <dd>
+            <span>{{vm.myTestEntity.tag}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterApp.myTestEntity.createdOn">Created On</span></dt>
+        <dd>
+            <span>{{vm.myTestEntity.createdOn | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="jhipsterApp.myTestEntity.modifedOn">Modifed On</span></dt>
+        <dd>
+            <span>{{vm.myTestEntity.modifedOn | date:'medium'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="my-test-entity-detail.edit({id:vm.myTestEntity.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

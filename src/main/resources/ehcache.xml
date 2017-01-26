@@ -20,5 +20,9 @@
 
     <cache alias="io.github.sks.samplejhipster.domain.User.persistentTokens" uses-template="simple"/>
 
+    <cache alias="io.github.sks.samplejhipster.domain.MyTestEntity" uses-template="simple"/>
+
+    <cache alias="io.github.sks.samplejhipster.domain.MyTestEntity.createdBies" uses-template="simple"/>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>
