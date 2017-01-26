@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiParam;
  * REST controller for managing MyTestEntity.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/my-test-entities")
 public class MyTestEntityResource {
 
 
@@ -52,7 +52,7 @@ public class MyTestEntityResource {
      * @return the ResponseEntity with status 201 (Created) and with body the new myTestEntity, or with status 400 (Bad Request) if the myTestEntity has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PostMapping("/my-test-entities")
+    @PostMapping()
     @Timed
     public ResponseEntity<MyTestEntity> createMyTestEntity(@Valid @RequestBody MyTestEntity myTestEntity) throws URISyntaxException {
         log.debug("REST request to save MyTestEntity : {}", myTestEntity);
@@ -74,7 +74,7 @@ public class MyTestEntityResource {
      * or with status 500 (Internal Server Error) if the myTestEntity couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/my-test-entities")
+    @PutMapping()
     @Timed
     public ResponseEntity<MyTestEntity> updateMyTestEntity(@Valid @RequestBody MyTestEntity myTestEntity) throws URISyntaxException {
         log.debug("REST request to update MyTestEntity : {}", myTestEntity);
@@ -94,7 +94,7 @@ public class MyTestEntityResource {
      * @return the ResponseEntity with status 200 (OK) and the list of myTestEntities in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @GetMapping("/my-test-entities")
+    @GetMapping()
     @Timed
     public ResponseEntity<List<MyTestEntity>> getAllMyTestEntities(@ApiParam Pageable pageable)
         throws URISyntaxException {
@@ -110,7 +110,7 @@ public class MyTestEntityResource {
      * @param id the id of the myTestEntity to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the myTestEntity, or with status 404 (Not Found)
      */
-    @GetMapping("/my-test-entities/{id}")
+    @GetMapping("/{id}")
     @Timed
     public ResponseEntity<MyTestEntity> getMyTestEntity(@PathVariable Long id) {
         log.debug("REST request to get MyTestEntity : {}", id);
@@ -128,7 +128,7 @@ public class MyTestEntityResource {
      * @param id the id of the myTestEntity to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/my-test-entities/{id}")
+    @DeleteMapping("/{id}")
     @Timed
     public ResponseEntity<Void> deleteMyTestEntity(@PathVariable Long id) {
         log.debug("REST request to delete MyTestEntity : {}", id);
